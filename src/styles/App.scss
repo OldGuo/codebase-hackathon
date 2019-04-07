@@ -3,7 +3,8 @@
 @import "~@fullcalendar/timegrid/main.css";
 
 #calendar-list, #trello-list {
-  width: 50%;
+  width: 45%;
   display: inline-block;
+  vertical-align: top;
 }
 
