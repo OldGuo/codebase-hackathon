@@ -7,6 +7,22 @@ import interactionPlugin from "@fullcalendar/interaction";
 import "./styles/App.css";
 
 export default class Calendar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      events: [
+        {
+          title: "event 1",
+          date: "2019-04-07"
+        },
+        {
+          title: "event 2",
+          date: "2019-04-08"
+        }
+      ]
+    };
+  }
+
   handleDateClick = arg => {
     // TODO: GOOGLE CALENDAR STUFF
     alert(arg.dateStr);
@@ -19,13 +35,16 @@ export default class Calendar extends React.Component {
 
   render() {
     return (
-      <FullCalendar
-        defaultView="timeGridWeek"
-        selectable
-        dateClick={this.handleDateClick}
-        select={this.handleSelect}
-        plugins={[interactionPlugin, dayGridPlugin, timeGridPlugin]}
-      />
+      <div>
+        <FullCalendar
+          defaultView="timeGridWeek"
+          selectable
+          dateClick={this.handleDateClick}
+          select={this.handleSelect}
+          plugins={[interactionPlugin, dayGridPlugin, timeGridPlugin]}
+          events={this.state.events}
+        />
+      </div>
     );
   }
 }
