@@ -23,9 +23,11 @@ class Trello extends React.Component {
 
   componentDidMount() {
     fetch(
-      `https://api.trello.com/1/boards/57b519aa74d420ab0e4d3086/lists?key=${
-        process.env.REACT_APP_TRELLO_KEY
-      }&token=${process.env.REACT_APP_TRELLO_TOKEN}`,
+      `https://api.trello.com/1/boards/${
+        process.env.REACT_APP_TRELLO_BOARD
+      }/lists?key=${process.env.REACT_APP_TRELLO_KEY}&token=${
+        process.env.REACT_APP_TRELLO_TOKEN
+      }`,
     )
       .then(res => res.json())
       .then(result => console.log('Lists:', result));
@@ -37,9 +39,11 @@ class Trello extends React.Component {
       .then(res => res.json())
       .then(result => console.log('Boards: ', result));
     fetch(
-      `https://api.trello.com/1/lists/596740f59e29c0bec3eb66ff/cards?key=${
-        process.env.REACT_APP_TRELLO_KEY
-      }&token=${process.env.REACT_APP_TRELLO_TOKEN}`,
+      `https://api.trello.com/1/lists/${
+        process.env.REACT_APP_TRELLO_LIST
+      }/cards?key=${process.env.REACT_APP_TRELLO_KEY}&token=${
+        process.env.REACT_APP_TRELLO_TOKEN
+      }`,
     )
       .then(res => res.json())
       .then(result => {
