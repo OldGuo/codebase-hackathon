@@ -2,6 +2,7 @@ import React from "react";
 import logo from "./assets/logo.svg";
 import Header from "./components/Header";
 import NavigationBar from "./components/NavigationBar";
+import Calendar from "./Calendar";
 import "./styles/App.css";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <Header />
       <body>
         <NavigationBar />
+        <Calendar />
         <div className="App">
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
