@@ -4,12 +4,13 @@
       "modules": true
     }
   },
+  "parser": "babel-eslint",
   "env": {
     "browser": true,
     "jest": true
   },
-  "extends": [
-    "airbnb",
-    "prettier"
-  ]
+  "extends": ["airbnb", "prettier"],
+  "rules": {
+    "react/prefer-stateless-function": "off"
+  }
 }
