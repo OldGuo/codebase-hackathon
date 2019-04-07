@@ -6,8 +6,8 @@ class Card extends React.Component {
   render() {
     return (
       <Draggable
-        key={this.props.item}
-        draggableId={this.props.item}
+        key={this.props.item.id}
+        draggableId={this.props.item.id}
         index={this.props.index}>
         {(provided, snapshot) => (
           <div
@@ -15,7 +15,7 @@ class Card extends React.Component {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             className="trello-item">
-            {this.props.item}
+            {this.props.item.name}
           </div>
         )}
       </Draggable>

@@ -16,9 +16,41 @@ class Trello extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: ['item1', 'item2', 'item3'],
+      items: [],
     };
     this.onDragEnd = this.onDragEnd.bind(this);
+  }
+
+  componentDidMount() {
+    fetch(
+      `https://api.trello.com/1/boards/57b519aa74d420ab0e4d3086/lists?key=${
+        process.env.REACT_APP_TRELLO_KEY
+      }&token=${process.env.REACT_APP_TRELLO_TOKEN}`,
+    )
+      .then(res => res.json())
+      .then(result => console.log('Lists:', result));
+    fetch(
+      `https://api.trello.com/1/members/me/boards?key=${
+        process.env.REACT_APP_TRELLO_KEY
+      }&token=${process.env.REACT_APP_TRELLO_TOKEN}`,
+    )
+      .then(res => res.json())
+      .then(result => console.log('Boards: ', result));
+    fetch(
+      `https://api.trello.com/1/lists/596740f59e29c0bec3eb66ff/cards?key=${
+        process.env.REACT_APP_TRELLO_KEY
+      }&token=${process.env.REACT_APP_TRELLO_TOKEN}`,
+    )
+      .then(res => res.json())
+      .then(result => {
+        console.log('Cards: ', result);
+        this.setState({
+          items: result.map((item, index) => ({
+            id: item.id,
+            name: item.name,
+          })),
+        });
+      });
   }
 
   onDragEnd = result => {
@@ -36,7 +68,6 @@ class Trello extends React.Component {
   };
 
   render() {
-    console.log(process.env);
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId="trello-list">
@@ -46,7 +77,7 @@ class Trello extends React.Component {
               ref={provided.innerRef}
               id="trello-list">
               {this.state.items.map((item, index) => (
-                <Card key={item} item={item} index={index} />
+                <Card key={item.id} item={item} index={index} />
               ))}
               {provided.placeholder}
             </div>
